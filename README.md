@@ -4,7 +4,7 @@ Generates Twitter web auth token
 ### Get auth token
 
 ```typescript
-const response = await getAuthToken({email, username, password [, csrfToken]});
+const response = await getAuthToken({ email, username, password });
 // response
 //  {
 //    "authToken": "<authToken>",
@@ -22,4 +22,9 @@ const response = await getAuthToken();
 //    "csrfToken": "<csrfToken>",
 //    "guestToken": "<guestToken>"
 //  }
+```
+
+### Generate new CSRF Token
+```typescript
+const newCsrfToken = generateCsrfToken();
 ```

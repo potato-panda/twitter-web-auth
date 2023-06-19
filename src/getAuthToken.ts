@@ -1,4 +1,5 @@
-import { _bearer, _csrfToken } from './constants';
+import { generateCsrfToken } from '.';
+import { _bearer } from './constants';
 import HttpClient from './HttpClient';
 import { debug } from './utils/debug';
 
@@ -13,7 +14,6 @@ export async function getAuthToken(credentials?: {
   email: string;
   username: string;
   password: string;
-  csrfToken?: string;
 }) {
   const baseHeaders = {
     'User-Agent':
@@ -39,9 +39,9 @@ export async function getAuthToken(credentials?: {
   const [, guestToken] = match.split('"')[1].replace(';', '').split('=');
 
   // Return Guest Token if credentials are not provided
-  if (!credentials) return { guestToken, csrfToken: _csrfToken };
+  if (!credentials) return { guestToken, csrfToken: generateCsrfToken() };
 
-  const { email, username, password } = credentials;
+  const { email, username, password, } = credentials;
 
   let flowToken = await flow_1_checkLogin();
 
@@ -62,7 +62,7 @@ export async function getAuthToken(credentials?: {
   await flow_6_checkForLogin();
 
   const { auth_token } = http.cookieJar.cookies;
-  return { authToken: auth_token, csrfToken: _csrfToken, guestToken };
+  return { authToken: auth_token, csrfToken: generateCsrfToken(), guestToken };
 
   async function flow_6_checkForLogin() {
     debug('Check for Login');
