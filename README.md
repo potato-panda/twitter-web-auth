@@ -8,6 +8,7 @@ const response = await getAuthToken({ email, username, password });
 // response
 //  {
 //    "authToken": "<authToken>",
+//    "bearer": "<bearer>",
 //    "csrfToken": "<csrfToken>",
 //    "guestToken": "<guestToken>"
 //  }
@@ -19,6 +20,7 @@ const response = await getAuthToken({ email, username, password });
 const response = await getAuthToken();
 // response
 //  {
+//    "bearer": "<bearer>",
 //    "csrfToken": "<csrfToken>",
 //    "guestToken": "<guestToken>"
 //  }

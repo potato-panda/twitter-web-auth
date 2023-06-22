@@ -1,6 +1,6 @@
 {
   "name": "twitter-web-auth",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "description": "",
   "type": "commonjs",
   "exports": {
